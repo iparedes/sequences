@@ -4,7 +4,15 @@ grammar seq;
 
 
 sequence
-    :   repet? dire=(N | S | W | E | WE | EW | NS | SN) offset?
+    :   layer+
+    ;
+
+layer
+    :   step+
+    ;
+
+step
+    :   repet? dire=(N | S | W | E | WE | EW | NS | SN) (OBRA offset CBRA)?
     ;
 
 repet   :   expr;
@@ -65,6 +73,8 @@ DIGIT
 OPIDX:  '&';
 OPAR:   '(';
 CPAR:   ')';
+OBRA:   '[';
+CBRA:   ']';
 MULT:   '*';
 DIV:    '/';
 PLUS:   '+';

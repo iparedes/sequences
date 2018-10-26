@@ -17,6 +17,24 @@ class seqListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by seqParser#layer.
+    def enterLayer(self, ctx:seqParser.LayerContext):
+        pass
+
+    # Exit a parse tree produced by seqParser#layer.
+    def exitLayer(self, ctx:seqParser.LayerContext):
+        pass
+
+
+    # Enter a parse tree produced by seqParser#step.
+    def enterStep(self, ctx:seqParser.StepContext):
+        pass
+
+    # Exit a parse tree produced by seqParser#step.
+    def exitStep(self, ctx:seqParser.StepContext):
+        pass
+
+
     # Enter a parse tree produced by seqParser#repet.
     def enterRepet(self, ctx:seqParser.RepetContext):
         pass

@@ -10,7 +10,7 @@ from semseq import *
 def main():
     #stream = antlr4.InputStream("((3 - 5) * 2)")
     #stream = antlr4.InputStream("(-2)^10")
-    stream = antlr4.InputStream(" 5 N ")
+    stream = antlr4.InputStream("(5*2)N[2]SE")
     #stream = antlr4.InputStream("3*2+1 N 7-3-2 ")
 
     #lexer = seqLexer(antlr4.StdinStream())

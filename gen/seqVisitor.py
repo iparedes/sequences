@@ -14,6 +14,16 @@ class seqVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
+    # Visit a parse tree produced by seqParser#layer.
+    def visitLayer(self, ctx:seqParser.LayerContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by seqParser#step.
+    def visitStep(self, ctx:seqParser.StepContext):
+        return self.visitChildren(ctx)
+
+
     # Visit a parse tree produced by seqParser#repet.
     def visitRepet(self, ctx:seqParser.RepetContext):
         return self.visitChildren(ctx)

@@ -69,8 +69,8 @@ class SemSeq(seqListener):
         self.Stack.append(-a)
 
 
-    def exitSequence(self, ctx:seqParser.SequenceContext):
-        logger.debug("exitSequence %s",ctx.getText())
+    def exitStep(self, ctx:seqParser.StepContext):
+        logger.debug("exitStep %s",ctx.getText())
 
         if ctx.offset() is None:
             b=1
