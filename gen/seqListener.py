@@ -8,6 +8,15 @@ else:
 # This class defines a complete listener for a parse tree produced by seqParser.
 class seqListener(ParseTreeListener):
 
+    # Enter a parse tree produced by seqParser#sequence.
+    def enterSequence(self, ctx:seqParser.SequenceContext):
+        pass
+
+    # Exit a parse tree produced by seqParser#sequence.
+    def exitSequence(self, ctx:seqParser.SequenceContext):
+        pass
+
+
     # Enter a parse tree produced by seqParser#minExpr.
     def enterMinExpr(self, ctx:seqParser.MinExprContext):
         pass

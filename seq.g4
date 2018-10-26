@@ -3,6 +3,11 @@
 grammar seq;
 
 
+sequence
+    :   expr dire=(N | S | W | E | WE | EW | NS | SN) expr
+    ;
+
+
 expr
     :   <assoc=right> expr POW expr     #powExpr
     |   MINUS expr                      #minExpr
@@ -37,9 +42,9 @@ ELEM_val
 ELEM_idx
     :   OPIDX ELEM_val;
 
-IDENT
-   : VALID_ID_START VALID_ID_CHAR*
-   ;
+//IDENT
+//   : VALID_ID_START VALID_ID_CHAR*
+//   ;
 
 NUMBER  :   DIGIT+;
 
@@ -63,6 +68,15 @@ DIV:    '/';
 PLUS:   '+';
 MINUS:  '-';
 POW:    '^';
+
+N:      'N';
+S:      'S';
+W:      'W';
+E:      'E';
+WE:      'WE';
+EW:      'EW';
+NS:      'NS';
+SN:      'SN';
 
 WS
    : [ \r\n] + -> skip

@@ -27,6 +27,7 @@ class SemSeq(seqListener):
 
 
     Stack=[]
+    Queue=[]
 
 
     def enterNumberAtom(self, ctx:seqParser.NumberAtomContext):
@@ -66,3 +67,15 @@ class SemSeq(seqListener):
 
         a=self.Stack.pop()
         self.Stack.append(-a)
+
+
+    def exitSequence(self, ctx:seqParser.SequenceContext):
+        logger.debug("exitSequence %s",ctx.getText())
+
+        b=self.Stack.pop()
+        a=self.Stack.pop()
+
+        self.Queue.append(ctx.dire.text)
+        self.Queue.append(a)
+        self.Queue.append(b)
+

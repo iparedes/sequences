@@ -9,6 +9,11 @@ else:
 
 class seqVisitor(ParseTreeVisitor):
 
+    # Visit a parse tree produced by seqParser#sequence.
+    def visitSequence(self, ctx:seqParser.SequenceContext):
+        return self.visitChildren(ctx)
+
+
     # Visit a parse tree produced by seqParser#minExpr.
     def visitMinExpr(self, ctx:seqParser.MinExprContext):
         return self.visitChildren(ctx)
