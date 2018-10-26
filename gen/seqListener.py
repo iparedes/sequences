@@ -17,6 +17,24 @@ class seqListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by seqParser#repet.
+    def enterRepet(self, ctx:seqParser.RepetContext):
+        pass
+
+    # Exit a parse tree produced by seqParser#repet.
+    def exitRepet(self, ctx:seqParser.RepetContext):
+        pass
+
+
+    # Enter a parse tree produced by seqParser#offset.
+    def enterOffset(self, ctx:seqParser.OffsetContext):
+        pass
+
+    # Exit a parse tree produced by seqParser#offset.
+    def exitOffset(self, ctx:seqParser.OffsetContext):
+        pass
+
+
     # Enter a parse tree produced by seqParser#minExpr.
     def enterMinExpr(self, ctx:seqParser.MinExprContext):
         pass

@@ -72,10 +72,19 @@ class SemSeq(seqListener):
     def exitSequence(self, ctx:seqParser.SequenceContext):
         logger.debug("exitSequence %s",ctx.getText())
 
-        b=self.Stack.pop()
-        a=self.Stack.pop()
+        if ctx.offset() is None:
+            b=1
+        else:
+            b=self.Stack.pop()
+
+        if ctx.repet() is None:
+            a=1
+        else:
+            a=self.Stack.pop()
 
         self.Queue.append(ctx.dire.text)
         self.Queue.append(a)
         self.Queue.append(b)
 
+    def enterSequence(self, ctx:seqParser.SequenceContext):
+        pass

@@ -4,9 +4,11 @@ grammar seq;
 
 
 sequence
-    :   expr dire=(N | S | W | E | WE | EW | NS | SN) expr
+    :   repet? dire=(N | S | W | E | WE | EW | NS | SN) offset?
     ;
 
+repet   :   expr;
+offset  :   expr;
 
 expr
     :   <assoc=right> expr POW expr     #powExpr
