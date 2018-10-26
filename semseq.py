@@ -17,6 +17,8 @@
 #     # def visitFactor(self,ctx):
 #     #     print ("factor")
 
+import logging
+logger = logging.getLogger(__name__)
 
 from gen.seqListener import *
 
@@ -28,11 +30,39 @@ class SemSeq(seqListener):
 
 
     def enterNumberAtom(self, ctx:seqParser.NumberAtomContext):
-        print ("NumberAtom",ctx.getText())
+        logger.debug("enterNumberAtom %s",ctx.getText())
         self.Stack.append(int(ctx.getText()))
 
     def exitAddExpr(self, ctx:seqParser.AddExprContext):
-        print("AddExpr",ctx.getText())
-        a=self.Stack.pop()
+        logger.debug("exitAddExpr %s",ctx.getText())
         b=self.Stack.pop()
-        self.Stack.append(a+b)
+        a=self.Stack.pop()
+
+        if ctx.op.type == seqParser.PLUS:
+            self.Stack.append(a+b)
+        else:
+            self.Stack.append(a-b)
+
+    def exitMulExpr(self, ctx:seqParser.AddExprContext):
+        logger.debug("exitMulExpr %s",ctx.getText())
+        b=self.Stack.pop()
+        a=self.Stack.pop()
+
+        if ctx.op.type == seqParser.MULT:
+            self.Stack.append(a*b)
+        else:
+            self.Stack.append(int(a/b))
+
+    def exitPowExpr(self, ctx:seqParser.PowExprContext):
+        logger.debug("exitPowExpr %s",ctx.getText())
+
+        b=self.Stack.pop()
+        a=self.Stack.pop()
+
+        self.Stack.append(a**b)
+
+    def exitMinExpr(self, ctx:seqParser.MinExprContext):
+        logger.debug("exitMinExpr %s",ctx.getText())
+
+        a=self.Stack.pop()
+        self.Stack.append(-a)

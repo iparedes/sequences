@@ -8,6 +8,15 @@ else:
 # This class defines a complete listener for a parse tree produced by seqParser.
 class seqListener(ParseTreeListener):
 
+    # Enter a parse tree produced by seqParser#minExpr.
+    def enterMinExpr(self, ctx:seqParser.MinExprContext):
+        pass
+
+    # Exit a parse tree produced by seqParser#minExpr.
+    def exitMinExpr(self, ctx:seqParser.MinExprContext):
+        pass
+
+
     # Enter a parse tree produced by seqParser#addExpr.
     def enterAddExpr(self, ctx:seqParser.AddExprContext):
         pass
@@ -26,12 +35,21 @@ class seqListener(ParseTreeListener):
         pass
 
 
-    # Enter a parse tree produced by seqParser#atomExpr.
-    def enterAtomExpr(self, ctx:seqParser.AtomExprContext):
+    # Enter a parse tree produced by seqParser#atoExpr.
+    def enterAtoExpr(self, ctx:seqParser.AtoExprContext):
         pass
 
-    # Exit a parse tree produced by seqParser#atomExpr.
-    def exitAtomExpr(self, ctx:seqParser.AtomExprContext):
+    # Exit a parse tree produced by seqParser#atoExpr.
+    def exitAtoExpr(self, ctx:seqParser.AtoExprContext):
+        pass
+
+
+    # Enter a parse tree produced by seqParser#powExpr.
+    def enterPowExpr(self, ctx:seqParser.PowExprContext):
+        pass
+
+    # Exit a parse tree produced by seqParser#powExpr.
+    def exitPowExpr(self, ctx:seqParser.PowExprContext):
         pass
 
 

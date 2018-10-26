@@ -4,9 +4,11 @@ grammar seq;
 
 
 expr
-    :   expr op=(MULT | DIV ) expr      #mulExpr
+    :   <assoc=right> expr POW expr     #powExpr
+    |   MINUS expr                      #minExpr
+    |   expr op=(MULT | DIV ) expr      #mulExpr
     |   expr op=(PLUS | MINUS) expr     #addExpr
-    |   atom                            #atomExpr
+    |   atom                            #atoExpr
     ;
 
 atom
@@ -60,6 +62,7 @@ MULT:   '*';
 DIV:    '/';
 PLUS:   '+';
 MINUS:  '-';
+POW:    '^';
 
 WS
    : [ \r\n] + -> skip
