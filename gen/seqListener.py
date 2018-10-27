@@ -53,6 +53,15 @@ class seqListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by seqParser#base.
+    def enterBase(self, ctx:seqParser.BaseContext):
+        pass
+
+    # Exit a parse tree produced by seqParser#base.
+    def exitBase(self, ctx:seqParser.BaseContext):
+        pass
+
+
     # Enter a parse tree produced by seqParser#minExpr.
     def enterMinExpr(self, ctx:seqParser.MinExprContext):
         pass

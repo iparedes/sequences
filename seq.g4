@@ -12,11 +12,12 @@ layer
     ;
 
 step
-    :   repet? dire=(N | S | W | E | WE | EW | NS | SN) (OBRA offset CBRA)?
+    :   repet? dire=(N | S | W | E | WE | EW | NS | SN) (OBRA (base COLON)? offset CBRA)?
     ;
 
 repet   :   expr;
 offset  :   expr;
+base    :   expr;
 
 expr
     :   <assoc=right> expr POW expr     #powExpr
@@ -33,11 +34,6 @@ atom
     ;
 
 
-
-LAST    : 'last';   // ast element added to the sequence (i-1)
-ZERO    : 'zero';   // initial element of the sequence
-I       : 'i';      // current element of the sequence
-
 ELEM
     :   ELEM_val
     |   ELEM_idx
@@ -46,8 +42,11 @@ ELEM
 ELEM_val
     :   LAST
     |   ZERO
-    |   I
     ;
+
+LAST    : 'L';   // last element added to the sequence (i-1)
+ZERO    : 'Z';   // initial element of the sequence
+
 
 ELEM_idx
     :   OPIDX ELEM_val;
@@ -80,6 +79,7 @@ DIV:    '/';
 PLUS:   '+';
 MINUS:  '-';
 POW:    '^';
+COLON:  ':';
 
 N:      'N';
 S:      'S';

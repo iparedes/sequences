@@ -34,6 +34,11 @@ class seqVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
+    # Visit a parse tree produced by seqParser#base.
+    def visitBase(self, ctx:seqParser.BaseContext):
+        return self.visitChildren(ctx)
+
+
     # Visit a parse tree produced by seqParser#minExpr.
     def visitMinExpr(self, ctx:seqParser.MinExprContext):
         return self.visitChildren(ctx)

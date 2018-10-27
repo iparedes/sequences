@@ -19,6 +19,7 @@
 
 import logging
 logger = logging.getLogger(__name__)
+import copy
 
 from gen.seqListener import *
 
@@ -28,7 +29,17 @@ class SemSeq(seqListener):
 
     Stack=[]
     Queue=[]
+    Context=None
 
+    # Queue is a set of registers
+    # Each register is Movement, Repeat, Base, Offset
+    #   Movement: N,S,W,E,NS,SN,EW,WE
+    #   Repeat: Times that the register will be appliced
+    #   Base: Index of the element to move from
+    #   Offset: Movements from the Base in the Movement direction
+
+    def __init__(self,context):
+        self.Context=context
 
     def enterNumberAtom(self, ctx:seqParser.NumberAtomContext):
         logger.debug("enterNumberAtom %s",ctx.getText())
@@ -72,19 +83,46 @@ class SemSeq(seqListener):
     def exitStep(self, ctx:seqParser.StepContext):
         logger.debug("exitStep %s",ctx.getText())
 
+        dir=ctx.dire.text
+
+
+        # Offset
         if ctx.offset() is None:
-            b=1
+            offset=1
         else:
-            b=self.Stack.pop()
+            offset=self.Stack.pop()
 
+        # Repeat
         if ctx.repet() is None:
-            a=1
+            repe=1
         else:
-            a=self.Stack.pop()
+            repe=self.Stack.pop()
 
-        self.Queue.append(ctx.dire.text)
-        self.Queue.append(a)
-        self.Queue.append(b)
+        # Base
+        if ctx.base() is None:
+            base='L'
+        else:
+            base=ctx.base().getText()
+
+        for f in range(repe):
+            i=self.Context['i']
+            if base=='L':
+                basei=i
+            elif base=='Z':
+                basei=0
+
+            old=self.Context['elems'][basei]
+            new=copy.deepcopy(old)
+            new.Move(dir,offset)
+
+            i=i+1
+            self.Context['i']=i
+            self.Context['elems'].append(new)
+
+        # self.Queue.append(ctx.dire.text)
+        # self.Queue.append(repe)
+        # self.Queue.append(base)
+        # self.Queue.append(offset)
 
     def enterSequence(self, ctx:seqParser.SequenceContext):
         pass
