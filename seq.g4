@@ -12,7 +12,12 @@ layer
     ;
 
 step
-    :   repet? dire=(N | S | W | E | WE | EW | NS | SN) (OBRA (base COLON)? offset CBRA)?
+    :   repet? (OBRA base CBRA)? dirs+
+//    :   repet? dire=(N | S | W | E | WE | EW | NS | SN) (OBRA (base COLON)? offset CBRA)?
+    ;
+
+dirs
+    :   dire=(N | S | W | E | WE | EW | NS | SN) (COLON offset)?
     ;
 
 repet   :   expr;
@@ -25,31 +30,21 @@ expr
     |   expr op=(MULT | DIV ) expr      #mulExpr
     |   expr op=(PLUS | MINUS) expr     #addExpr
     |   atom                            #atoExpr
+    |   OPIDX atom                      #atoIdx
     ;
 
 atom
-    :   OPAR expr CPAR  #parExpr
-    |   NUMBER          #numberAtom
-    |   ELEM            #elemAtom
+    :   OPAR expr CPAR      #parExpr
+    |   NUMBER              #numberAtom
+    |   elem=(LAST | ZERO)  #elemAtom
     ;
 
 
-ELEM
-    :   ELEM_val
-    |   ELEM_idx
-    ;
 
-ELEM_val
-    :   LAST
-    |   ZERO
-    ;
-
-LAST    : 'L';   // last element added to the sequence (i-1)
-ZERO    : 'Z';   // initial element of the sequence
+LAST    : 'L';   // index of last element added to the sequence (i-1)
+ZERO    : 'Z';   // index of initial element of the sequence
 
 
-ELEM_idx
-    :   OPIDX ELEM_val;
 
 //IDENT
 //   : VALID_ID_START VALID_ID_CHAR*

@@ -24,6 +24,11 @@ class seqVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
+    # Visit a parse tree produced by seqParser#dirs.
+    def visitDirs(self, ctx:seqParser.DirsContext):
+        return self.visitChildren(ctx)
+
+
     # Visit a parse tree produced by seqParser#repet.
     def visitRepet(self, ctx:seqParser.RepetContext):
         return self.visitChildren(ctx)
@@ -61,6 +66,11 @@ class seqVisitor(ParseTreeVisitor):
 
     # Visit a parse tree produced by seqParser#powExpr.
     def visitPowExpr(self, ctx:seqParser.PowExprContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by seqParser#atoIdx.
+    def visitAtoIdx(self, ctx:seqParser.AtoIdxContext):
         return self.visitChildren(ctx)
 
 

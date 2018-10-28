@@ -17,7 +17,11 @@ class TSeq:
 
     def __init__(self):
         #stream = antlr4.InputStream("(5*2)N[I:2]SE")
-        stream = antlr4.InputStream("(2*1)N[Z:2]")
+        #stream = antlr4.InputStream("(2*1)N[Z:2]")
+        #stream = antlr4.InputStream("[Z]N:2W:1")
+        stream = antlr4.InputStream("3[Z]N:2W:1")
+
+
         #lexer = seqLexer(antlr4.StdinStream())
 
         lexer = seqLexer(stream)

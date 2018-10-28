@@ -7,33 +7,35 @@ import sys
 
 def serializedATN():
     with StringIO() as buf:
-        buf.write("\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\35")
-        buf.write("N\4\2\t\2\4\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b")
-        buf.write("\t\b\4\t\t\t\3\2\6\2\24\n\2\r\2\16\2\25\3\3\6\3\31\n\3")
-        buf.write("\r\3\16\3\32\3\4\5\4\36\n\4\3\4\3\4\3\4\3\4\3\4\5\4%\n")
-        buf.write("\4\3\4\3\4\3\4\5\4*\n\4\3\5\3\5\3\6\3\6\3\7\3\7\3\b\3")
-        buf.write("\b\3\b\3\b\5\b\66\n\b\3\b\3\b\3\b\3\b\3\b\3\b\3\b\3\b")
-        buf.write("\3\b\7\bA\n\b\f\b\16\bD\13\b\3\t\3\t\3\t\3\t\3\t\3\t\5")
-        buf.write("\tL\n\t\3\t\2\3\16\n\2\4\6\b\n\f\16\20\2\5\3\2\25\34\3")
-        buf.write("\2\17\20\3\2\21\22\2P\2\23\3\2\2\2\4\30\3\2\2\2\6\35\3")
-        buf.write("\2\2\2\b+\3\2\2\2\n-\3\2\2\2\f/\3\2\2\2\16\65\3\2\2\2")
-        buf.write("\20K\3\2\2\2\22\24\5\4\3\2\23\22\3\2\2\2\24\25\3\2\2\2")
-        buf.write("\25\23\3\2\2\2\25\26\3\2\2\2\26\3\3\2\2\2\27\31\5\6\4")
-        buf.write("\2\30\27\3\2\2\2\31\32\3\2\2\2\32\30\3\2\2\2\32\33\3\2")
-        buf.write("\2\2\33\5\3\2\2\2\34\36\5\b\5\2\35\34\3\2\2\2\35\36\3")
-        buf.write("\2\2\2\36\37\3\2\2\2\37)\t\2\2\2 $\7\r\2\2!\"\5\f\7\2")
-        buf.write("\"#\7\24\2\2#%\3\2\2\2$!\3\2\2\2$%\3\2\2\2%&\3\2\2\2&")
-        buf.write("\'\5\n\6\2\'(\7\16\2\2(*\3\2\2\2) \3\2\2\2)*\3\2\2\2*")
-        buf.write("\7\3\2\2\2+,\5\16\b\2,\t\3\2\2\2-.\5\16\b\2.\13\3\2\2")
-        buf.write("\2/\60\5\16\b\2\60\r\3\2\2\2\61\62\b\b\1\2\62\63\7\22")
-        buf.write("\2\2\63\66\5\16\b\6\64\66\5\20\t\2\65\61\3\2\2\2\65\64")
-        buf.write("\3\2\2\2\66B\3\2\2\2\678\f\7\2\289\7\23\2\29A\5\16\b\7")
-        buf.write(":;\f\5\2\2;<\t\3\2\2<A\5\16\b\6=>\f\4\2\2>?\t\4\2\2?A")
-        buf.write("\5\16\b\5@\67\3\2\2\2@:\3\2\2\2@=\3\2\2\2AD\3\2\2\2B@")
-        buf.write("\3\2\2\2BC\3\2\2\2C\17\3\2\2\2DB\3\2\2\2EF\7\13\2\2FG")
-        buf.write("\5\16\b\2GH\7\f\2\2HL\3\2\2\2IL\7\b\2\2JL\7\3\2\2KE\3")
-        buf.write("\2\2\2KI\3\2\2\2KJ\3\2\2\2L\21\3\2\2\2\13\25\32\35$)\65")
-        buf.write("@BK")
+        buf.write("\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\32")
+        buf.write("V\4\2\t\2\4\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b")
+        buf.write("\t\b\4\t\t\t\4\n\t\n\3\2\6\2\26\n\2\r\2\16\2\27\3\3\6")
+        buf.write("\3\33\n\3\r\3\16\3\34\3\4\5\4 \n\4\3\4\3\4\3\4\3\4\5\4")
+        buf.write("&\n\4\3\4\6\4)\n\4\r\4\16\4*\3\5\3\5\3\5\5\5\60\n\5\3")
+        buf.write("\6\3\6\3\7\3\7\3\b\3\b\3\t\3\t\3\t\3\t\3\t\3\t\5\t>\n")
+        buf.write("\t\3\t\3\t\3\t\3\t\3\t\3\t\3\t\3\t\3\t\7\tI\n\t\f\t\16")
+        buf.write("\tL\13\t\3\n\3\n\3\n\3\n\3\n\3\n\5\nT\n\n\3\n\2\3\20\13")
+        buf.write("\2\4\6\b\n\f\16\20\22\2\6\3\2\22\31\3\2\f\r\3\2\16\17")
+        buf.write("\3\2\3\4\2Y\2\25\3\2\2\2\4\32\3\2\2\2\6\37\3\2\2\2\b,")
+        buf.write("\3\2\2\2\n\61\3\2\2\2\f\63\3\2\2\2\16\65\3\2\2\2\20=\3")
+        buf.write("\2\2\2\22S\3\2\2\2\24\26\5\4\3\2\25\24\3\2\2\2\26\27\3")
+        buf.write("\2\2\2\27\25\3\2\2\2\27\30\3\2\2\2\30\3\3\2\2\2\31\33")
+        buf.write("\5\6\4\2\32\31\3\2\2\2\33\34\3\2\2\2\34\32\3\2\2\2\34")
+        buf.write("\35\3\2\2\2\35\5\3\2\2\2\36 \5\n\6\2\37\36\3\2\2\2\37")
+        buf.write(" \3\2\2\2 %\3\2\2\2!\"\7\n\2\2\"#\5\16\b\2#$\7\13\2\2")
+        buf.write("$&\3\2\2\2%!\3\2\2\2%&\3\2\2\2&(\3\2\2\2\')\5\b\5\2(\'")
+        buf.write("\3\2\2\2)*\3\2\2\2*(\3\2\2\2*+\3\2\2\2+\7\3\2\2\2,/\t")
+        buf.write("\2\2\2-.\7\21\2\2.\60\5\f\7\2/-\3\2\2\2/\60\3\2\2\2\60")
+        buf.write("\t\3\2\2\2\61\62\5\20\t\2\62\13\3\2\2\2\63\64\5\20\t\2")
+        buf.write("\64\r\3\2\2\2\65\66\5\20\t\2\66\17\3\2\2\2\678\b\t\1\2")
+        buf.write("89\7\17\2\29>\5\20\t\7:>\5\22\n\2;<\7\7\2\2<>\5\22\n\2")
+        buf.write("=\67\3\2\2\2=:\3\2\2\2=;\3\2\2\2>J\3\2\2\2?@\f\b\2\2@")
+        buf.write("A\7\20\2\2AI\5\20\t\bBC\f\6\2\2CD\t\3\2\2DI\5\20\t\7E")
+        buf.write("F\f\5\2\2FG\t\4\2\2GI\5\20\t\6H?\3\2\2\2HB\3\2\2\2HE\3")
+        buf.write("\2\2\2IL\3\2\2\2JH\3\2\2\2JK\3\2\2\2K\21\3\2\2\2LJ\3\2")
+        buf.write("\2\2MN\7\b\2\2NO\5\20\t\2OP\7\t\2\2PT\3\2\2\2QT\7\5\2")
+        buf.write("\2RT\t\5\2\2SM\3\2\2\2SQ\3\2\2\2SR\3\2\2\2T\23\3\2\2\2")
+        buf.write("\f\27\34\37%*/=HJS")
         return buf.getvalue()
 
 
@@ -47,57 +49,54 @@ class seqParser ( Parser ):
 
     sharedContextCache = PredictionContextCache()
 
-    literalNames = [ "<INVALID>", "<INVALID>", "<INVALID>", "'L'", "'Z'", 
-                     "<INVALID>", "<INVALID>", "<INVALID>", "'&'", "'('", 
-                     "')'", "'['", "']'", "'*'", "'/'", "'+'", "'-'", "'^'", 
-                     "':'", "'N'", "'S'", "'W'", "'E'", "'WE'", "'EW'", 
-                     "'NS'", "'SN'" ]
+    literalNames = [ "<INVALID>", "'L'", "'Z'", "<INVALID>", "<INVALID>", 
+                     "'&'", "'('", "')'", "'['", "']'", "'*'", "'/'", "'+'", 
+                     "'-'", "'^'", "':'", "'N'", "'S'", "'W'", "'E'", "'WE'", 
+                     "'EW'", "'NS'", "'SN'" ]
 
-    symbolicNames = [ "<INVALID>", "ELEM", "ELEM_val", "LAST", "ZERO", "ELEM_idx", 
-                      "NUMBER", "DIGIT", "OPIDX", "OPAR", "CPAR", "OBRA", 
-                      "CBRA", "MULT", "DIV", "PLUS", "MINUS", "POW", "COLON", 
-                      "N", "S", "W", "E", "WE", "EW", "NS", "SN", "WS" ]
+    symbolicNames = [ "<INVALID>", "LAST", "ZERO", "NUMBER", "DIGIT", "OPIDX", 
+                      "OPAR", "CPAR", "OBRA", "CBRA", "MULT", "DIV", "PLUS", 
+                      "MINUS", "POW", "COLON", "N", "S", "W", "E", "WE", 
+                      "EW", "NS", "SN", "WS" ]
 
     RULE_sequence = 0
     RULE_layer = 1
     RULE_step = 2
-    RULE_repet = 3
-    RULE_offset = 4
-    RULE_base = 5
-    RULE_expr = 6
-    RULE_atom = 7
+    RULE_dirs = 3
+    RULE_repet = 4
+    RULE_offset = 5
+    RULE_base = 6
+    RULE_expr = 7
+    RULE_atom = 8
 
-    ruleNames =  [ "sequence", "layer", "step", "repet", "offset", "base", 
-                   "expr", "atom" ]
+    ruleNames =  [ "sequence", "layer", "step", "dirs", "repet", "offset", 
+                   "base", "expr", "atom" ]
 
     EOF = Token.EOF
-    ELEM=1
-    ELEM_val=2
-    LAST=3
-    ZERO=4
-    ELEM_idx=5
-    NUMBER=6
-    DIGIT=7
-    OPIDX=8
-    OPAR=9
-    CPAR=10
-    OBRA=11
-    CBRA=12
-    MULT=13
-    DIV=14
-    PLUS=15
-    MINUS=16
-    POW=17
-    COLON=18
-    N=19
-    S=20
-    W=21
-    E=22
-    WE=23
-    EW=24
-    NS=25
-    SN=26
-    WS=27
+    LAST=1
+    ZERO=2
+    NUMBER=3
+    DIGIT=4
+    OPIDX=5
+    OPAR=6
+    CPAR=7
+    OBRA=8
+    CBRA=9
+    MULT=10
+    DIV=11
+    PLUS=12
+    MINUS=13
+    POW=14
+    COLON=15
+    N=16
+    S=17
+    W=18
+    E=19
+    WE=20
+    EW=21
+    NS=22
+    SN=23
+    WS=24
 
     def __init__(self, input:TokenStream, output:TextIO = sys.stdout):
         super().__init__(input, output)
@@ -147,16 +146,16 @@ class seqParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 17 
+            self.state = 19 
             self._errHandler.sync(self)
             _la = self._input.LA(1)
             while True:
-                self.state = 16
+                self.state = 18
                 self.layer()
-                self.state = 19 
+                self.state = 21 
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
-                if not ((((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << seqParser.ELEM) | (1 << seqParser.NUMBER) | (1 << seqParser.OPAR) | (1 << seqParser.MINUS) | (1 << seqParser.N) | (1 << seqParser.S) | (1 << seqParser.W) | (1 << seqParser.E) | (1 << seqParser.WE) | (1 << seqParser.EW) | (1 << seqParser.NS) | (1 << seqParser.SN))) != 0)):
+                if not ((((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << seqParser.LAST) | (1 << seqParser.ZERO) | (1 << seqParser.NUMBER) | (1 << seqParser.OPIDX) | (1 << seqParser.OPAR) | (1 << seqParser.OBRA) | (1 << seqParser.MINUS) | (1 << seqParser.N) | (1 << seqParser.S) | (1 << seqParser.W) | (1 << seqParser.E) | (1 << seqParser.WE) | (1 << seqParser.EW) | (1 << seqParser.NS) | (1 << seqParser.SN))) != 0)):
                     break
 
         except RecognitionException as re:
@@ -206,17 +205,17 @@ class seqParser ( Parser ):
         self.enterRule(localctx, 2, self.RULE_layer)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 22 
+            self.state = 24 
             self._errHandler.sync(self)
             _alt = 1
             while _alt!=2 and _alt!=ATN.INVALID_ALT_NUMBER:
                 if _alt == 1:
-                    self.state = 21
+                    self.state = 23
                     self.step()
 
                 else:
                     raise NoViableAltException(self)
-                self.state = 24 
+                self.state = 26 
                 self._errHandler.sync(self)
                 _alt = self._interp.adaptivePredict(self._input,1,self._ctx)
 
@@ -229,6 +228,102 @@ class seqParser ( Parser ):
         return localctx
 
     class StepContext(ParserRuleContext):
+
+        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+            super().__init__(parent, invokingState)
+            self.parser = parser
+
+        def repet(self):
+            return self.getTypedRuleContext(seqParser.RepetContext,0)
+
+
+        def OBRA(self):
+            return self.getToken(seqParser.OBRA, 0)
+
+        def base(self):
+            return self.getTypedRuleContext(seqParser.BaseContext,0)
+
+
+        def CBRA(self):
+            return self.getToken(seqParser.CBRA, 0)
+
+        def dirs(self, i:int=None):
+            if i is None:
+                return self.getTypedRuleContexts(seqParser.DirsContext)
+            else:
+                return self.getTypedRuleContext(seqParser.DirsContext,i)
+
+
+        def getRuleIndex(self):
+            return seqParser.RULE_step
+
+        def enterRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "enterStep" ):
+                listener.enterStep(self)
+
+        def exitRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "exitStep" ):
+                listener.exitStep(self)
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitStep" ):
+                return visitor.visitStep(self)
+            else:
+                return visitor.visitChildren(self)
+
+
+
+
+    def step(self):
+
+        localctx = seqParser.StepContext(self, self._ctx, self.state)
+        self.enterRule(localctx, 4, self.RULE_step)
+        self._la = 0 # Token type
+        try:
+            self.enterOuterAlt(localctx, 1)
+            self.state = 29
+            self._errHandler.sync(self)
+            _la = self._input.LA(1)
+            if (((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << seqParser.LAST) | (1 << seqParser.ZERO) | (1 << seqParser.NUMBER) | (1 << seqParser.OPIDX) | (1 << seqParser.OPAR) | (1 << seqParser.MINUS))) != 0):
+                self.state = 28
+                self.repet()
+
+
+            self.state = 35
+            self._errHandler.sync(self)
+            _la = self._input.LA(1)
+            if _la==seqParser.OBRA:
+                self.state = 31
+                self.match(seqParser.OBRA)
+                self.state = 32
+                self.base()
+                self.state = 33
+                self.match(seqParser.CBRA)
+
+
+            self.state = 38 
+            self._errHandler.sync(self)
+            _alt = 1
+            while _alt!=2 and _alt!=ATN.INVALID_ALT_NUMBER:
+                if _alt == 1:
+                    self.state = 37
+                    self.dirs()
+
+                else:
+                    raise NoViableAltException(self)
+                self.state = 40 
+                self._errHandler.sync(self)
+                _alt = self._interp.adaptivePredict(self._input,4,self._ctx)
+
+        except RecognitionException as re:
+            localctx.exception = re
+            self._errHandler.reportError(self, re)
+            self._errHandler.recover(self, re)
+        finally:
+            self.exitRule()
+        return localctx
+
+    class DirsContext(ParserRuleContext):
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -259,63 +354,41 @@ class seqParser ( Parser ):
         def SN(self):
             return self.getToken(seqParser.SN, 0)
 
-        def repet(self):
-            return self.getTypedRuleContext(seqParser.RepetContext,0)
-
-
-        def OBRA(self):
-            return self.getToken(seqParser.OBRA, 0)
+        def COLON(self):
+            return self.getToken(seqParser.COLON, 0)
 
         def offset(self):
             return self.getTypedRuleContext(seqParser.OffsetContext,0)
 
 
-        def CBRA(self):
-            return self.getToken(seqParser.CBRA, 0)
-
-        def base(self):
-            return self.getTypedRuleContext(seqParser.BaseContext,0)
-
-
-        def COLON(self):
-            return self.getToken(seqParser.COLON, 0)
-
         def getRuleIndex(self):
-            return seqParser.RULE_step
+            return seqParser.RULE_dirs
 
         def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterStep" ):
-                listener.enterStep(self)
+            if hasattr( listener, "enterDirs" ):
+                listener.enterDirs(self)
 
         def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitStep" ):
-                listener.exitStep(self)
+            if hasattr( listener, "exitDirs" ):
+                listener.exitDirs(self)
 
         def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitStep" ):
-                return visitor.visitStep(self)
+            if hasattr( visitor, "visitDirs" ):
+                return visitor.visitDirs(self)
             else:
                 return visitor.visitChildren(self)
 
 
 
 
-    def step(self):
+    def dirs(self):
 
-        localctx = seqParser.StepContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 4, self.RULE_step)
+        localctx = seqParser.DirsContext(self, self._ctx, self.state)
+        self.enterRule(localctx, 6, self.RULE_dirs)
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 27
-            self._errHandler.sync(self)
-            _la = self._input.LA(1)
-            if (((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << seqParser.ELEM) | (1 << seqParser.NUMBER) | (1 << seqParser.OPAR) | (1 << seqParser.MINUS))) != 0):
-                self.state = 26
-                self.repet()
-
-
-            self.state = 29
+            self.state = 42
             localctx.dire = self._input.LT(1)
             _la = self._input.LA(1)
             if not((((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << seqParser.N) | (1 << seqParser.S) | (1 << seqParser.W) | (1 << seqParser.E) | (1 << seqParser.WE) | (1 << seqParser.EW) | (1 << seqParser.NS) | (1 << seqParser.SN))) != 0)):
@@ -323,26 +396,14 @@ class seqParser ( Parser ):
             else:
                 self._errHandler.reportMatch(self)
                 self.consume()
-            self.state = 39
+            self.state = 45
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            if _la==seqParser.OBRA:
-                self.state = 30
-                self.match(seqParser.OBRA)
-                self.state = 34
-                self._errHandler.sync(self)
-                la_ = self._interp.adaptivePredict(self._input,3,self._ctx)
-                if la_ == 1:
-                    self.state = 31
-                    self.base()
-                    self.state = 32
-                    self.match(seqParser.COLON)
-
-
-                self.state = 36
+            if _la==seqParser.COLON:
+                self.state = 43
+                self.match(seqParser.COLON)
+                self.state = 44
                 self.offset()
-                self.state = 37
-                self.match(seqParser.CBRA)
 
 
         except RecognitionException as re:
@@ -386,10 +447,10 @@ class seqParser ( Parser ):
     def repet(self):
 
         localctx = seqParser.RepetContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 6, self.RULE_repet)
+        self.enterRule(localctx, 8, self.RULE_repet)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 41
+            self.state = 47
             self.expr(0)
         except RecognitionException as re:
             localctx.exception = re
@@ -432,10 +493,10 @@ class seqParser ( Parser ):
     def offset(self):
 
         localctx = seqParser.OffsetContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 8, self.RULE_offset)
+        self.enterRule(localctx, 10, self.RULE_offset)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 43
+            self.state = 49
             self.expr(0)
         except RecognitionException as re:
             localctx.exception = re
@@ -478,10 +539,10 @@ class seqParser ( Parser ):
     def base(self):
 
         localctx = seqParser.BaseContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 10, self.RULE_base)
+        self.enterRule(localctx, 12, self.RULE_base)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 45
+            self.state = 51
             self.expr(0)
         except RecognitionException as re:
             localctx.exception = re
@@ -654,18 +715,45 @@ class seqParser ( Parser ):
                 return visitor.visitChildren(self)
 
 
+    class AtoIdxContext(ExprContext):
+
+        def __init__(self, parser, ctx:ParserRuleContext): # actually a seqParser.ExprContext
+            super().__init__(parser)
+            self.copyFrom(ctx)
+
+        def OPIDX(self):
+            return self.getToken(seqParser.OPIDX, 0)
+        def atom(self):
+            return self.getTypedRuleContext(seqParser.AtomContext,0)
+
+
+        def enterRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "enterAtoIdx" ):
+                listener.enterAtoIdx(self)
+
+        def exitRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "exitAtoIdx" ):
+                listener.exitAtoIdx(self)
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitAtoIdx" ):
+                return visitor.visitAtoIdx(self)
+            else:
+                return visitor.visitChildren(self)
+
+
 
     def expr(self, _p:int=0):
         _parentctx = self._ctx
         _parentState = self.state
         localctx = seqParser.ExprContext(self, self._ctx, _parentState)
         _prevctx = localctx
-        _startState = 12
-        self.enterRecursionRule(localctx, 12, self.RULE_expr, _p)
+        _startState = 14
+        self.enterRecursionRule(localctx, 14, self.RULE_expr, _p)
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 51
+            self.state = 59
             self._errHandler.sync(self)
             token = self._input.LA(1)
             if token in [seqParser.MINUS]:
@@ -673,54 +761,63 @@ class seqParser ( Parser ):
                 self._ctx = localctx
                 _prevctx = localctx
 
-                self.state = 48
+                self.state = 54
                 self.match(seqParser.MINUS)
-                self.state = 49
-                self.expr(4)
+                self.state = 55
+                self.expr(5)
                 pass
-            elif token in [seqParser.ELEM, seqParser.NUMBER, seqParser.OPAR]:
+            elif token in [seqParser.LAST, seqParser.ZERO, seqParser.NUMBER, seqParser.OPAR]:
                 localctx = seqParser.AtoExprContext(self, localctx)
                 self._ctx = localctx
                 _prevctx = localctx
-                self.state = 50
+                self.state = 56
+                self.atom()
+                pass
+            elif token in [seqParser.OPIDX]:
+                localctx = seqParser.AtoIdxContext(self, localctx)
+                self._ctx = localctx
+                _prevctx = localctx
+                self.state = 57
+                self.match(seqParser.OPIDX)
+                self.state = 58
                 self.atom()
                 pass
             else:
                 raise NoViableAltException(self)
 
             self._ctx.stop = self._input.LT(-1)
-            self.state = 64
+            self.state = 72
             self._errHandler.sync(self)
-            _alt = self._interp.adaptivePredict(self._input,7,self._ctx)
+            _alt = self._interp.adaptivePredict(self._input,8,self._ctx)
             while _alt!=2 and _alt!=ATN.INVALID_ALT_NUMBER:
                 if _alt==1:
                     if self._parseListeners is not None:
                         self.triggerExitRuleEvent()
                     _prevctx = localctx
-                    self.state = 62
+                    self.state = 70
                     self._errHandler.sync(self)
-                    la_ = self._interp.adaptivePredict(self._input,6,self._ctx)
+                    la_ = self._interp.adaptivePredict(self._input,7,self._ctx)
                     if la_ == 1:
                         localctx = seqParser.PowExprContext(self, seqParser.ExprContext(self, _parentctx, _parentState))
                         self.pushNewRecursionContext(localctx, _startState, self.RULE_expr)
-                        self.state = 53
-                        if not self.precpred(self._ctx, 5):
+                        self.state = 61
+                        if not self.precpred(self._ctx, 6):
                             from antlr4.error.Errors import FailedPredicateException
-                            raise FailedPredicateException(self, "self.precpred(self._ctx, 5)")
-                        self.state = 54
+                            raise FailedPredicateException(self, "self.precpred(self._ctx, 6)")
+                        self.state = 62
                         self.match(seqParser.POW)
-                        self.state = 55
-                        self.expr(5)
+                        self.state = 63
+                        self.expr(6)
                         pass
 
                     elif la_ == 2:
                         localctx = seqParser.MulExprContext(self, seqParser.ExprContext(self, _parentctx, _parentState))
                         self.pushNewRecursionContext(localctx, _startState, self.RULE_expr)
-                        self.state = 56
-                        if not self.precpred(self._ctx, 3):
+                        self.state = 64
+                        if not self.precpred(self._ctx, 4):
                             from antlr4.error.Errors import FailedPredicateException
-                            raise FailedPredicateException(self, "self.precpred(self._ctx, 3)")
-                        self.state = 57
+                            raise FailedPredicateException(self, "self.precpred(self._ctx, 4)")
+                        self.state = 65
                         localctx.op = self._input.LT(1)
                         _la = self._input.LA(1)
                         if not(_la==seqParser.MULT or _la==seqParser.DIV):
@@ -728,18 +825,18 @@ class seqParser ( Parser ):
                         else:
                             self._errHandler.reportMatch(self)
                             self.consume()
-                        self.state = 58
-                        self.expr(4)
+                        self.state = 66
+                        self.expr(5)
                         pass
 
                     elif la_ == 3:
                         localctx = seqParser.AddExprContext(self, seqParser.ExprContext(self, _parentctx, _parentState))
                         self.pushNewRecursionContext(localctx, _startState, self.RULE_expr)
-                        self.state = 59
-                        if not self.precpred(self._ctx, 2):
+                        self.state = 67
+                        if not self.precpred(self._ctx, 3):
                             from antlr4.error.Errors import FailedPredicateException
-                            raise FailedPredicateException(self, "self.precpred(self._ctx, 2)")
-                        self.state = 60
+                            raise FailedPredicateException(self, "self.precpred(self._ctx, 3)")
+                        self.state = 68
                         localctx.op = self._input.LT(1)
                         _la = self._input.LA(1)
                         if not(_la==seqParser.PLUS or _la==seqParser.MINUS):
@@ -747,14 +844,14 @@ class seqParser ( Parser ):
                         else:
                             self._errHandler.reportMatch(self)
                             self.consume()
-                        self.state = 61
-                        self.expr(3)
+                        self.state = 69
+                        self.expr(4)
                         pass
 
              
-                self.state = 66
+                self.state = 74
                 self._errHandler.sync(self)
-                _alt = self._interp.adaptivePredict(self._input,7,self._ctx)
+                _alt = self._interp.adaptivePredict(self._input,8,self._ctx)
 
         except RecognitionException as re:
             localctx.exception = re
@@ -784,10 +881,13 @@ class seqParser ( Parser ):
 
         def __init__(self, parser, ctx:ParserRuleContext): # actually a seqParser.AtomContext
             super().__init__(parser)
+            self.elem = None # Token
             self.copyFrom(ctx)
 
-        def ELEM(self):
-            return self.getToken(seqParser.ELEM, 0)
+        def LAST(self):
+            return self.getToken(seqParser.LAST, 0)
+        def ZERO(self):
+            return self.getToken(seqParser.ZERO, 0)
 
         def enterRule(self, listener:ParseTreeListener):
             if hasattr( listener, "enterElemAtom" ):
@@ -861,32 +961,39 @@ class seqParser ( Parser ):
     def atom(self):
 
         localctx = seqParser.AtomContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 14, self.RULE_atom)
+        self.enterRule(localctx, 16, self.RULE_atom)
+        self._la = 0 # Token type
         try:
-            self.state = 73
+            self.state = 81
             self._errHandler.sync(self)
             token = self._input.LA(1)
             if token in [seqParser.OPAR]:
                 localctx = seqParser.ParExprContext(self, localctx)
                 self.enterOuterAlt(localctx, 1)
-                self.state = 67
+                self.state = 75
                 self.match(seqParser.OPAR)
-                self.state = 68
+                self.state = 76
                 self.expr(0)
-                self.state = 69
+                self.state = 77
                 self.match(seqParser.CPAR)
                 pass
             elif token in [seqParser.NUMBER]:
                 localctx = seqParser.NumberAtomContext(self, localctx)
                 self.enterOuterAlt(localctx, 2)
-                self.state = 71
+                self.state = 79
                 self.match(seqParser.NUMBER)
                 pass
-            elif token in [seqParser.ELEM]:
+            elif token in [seqParser.LAST, seqParser.ZERO]:
                 localctx = seqParser.ElemAtomContext(self, localctx)
                 self.enterOuterAlt(localctx, 3)
-                self.state = 72
-                self.match(seqParser.ELEM)
+                self.state = 80
+                localctx.elem = self._input.LT(1)
+                _la = self._input.LA(1)
+                if not(_la==seqParser.LAST or _la==seqParser.ZERO):
+                    localctx.elem = self._errHandler.recoverInline(self)
+                else:
+                    self._errHandler.reportMatch(self)
+                    self.consume()
                 pass
             else:
                 raise NoViableAltException(self)
@@ -904,7 +1011,7 @@ class seqParser ( Parser ):
     def sempred(self, localctx:RuleContext, ruleIndex:int, predIndex:int):
         if self._predicates == None:
             self._predicates = dict()
-        self._predicates[6] = self.expr_sempred
+        self._predicates[7] = self.expr_sempred
         pred = self._predicates.get(ruleIndex, None)
         if pred is None:
             raise Exception("No predicate with index:" + str(ruleIndex))
@@ -913,15 +1020,15 @@ class seqParser ( Parser ):
 
     def expr_sempred(self, localctx:ExprContext, predIndex:int):
             if predIndex == 0:
-                return self.precpred(self._ctx, 5)
+                return self.precpred(self._ctx, 6)
          
 
             if predIndex == 1:
-                return self.precpred(self._ctx, 3)
+                return self.precpred(self._ctx, 4)
          
 
             if predIndex == 2:
-                return self.precpred(self._ctx, 2)
+                return self.precpred(self._ctx, 3)
          
 
 

@@ -29,6 +29,7 @@ class SemSeq(seqListener):
 
     Stack=[]
     Queue=[]
+    Dirs=[]
     Context=None
 
     # Queue is a set of registers
@@ -45,6 +46,19 @@ class SemSeq(seqListener):
         logger.debug("enterNumberAtom %s",ctx.getText())
         self.Stack.append(int(ctx.getText()))
 
+    def exitElemAtom(self, ctx:seqParser.ElemAtomContext):
+        logger.debug("exitElemAtom %s",ctx.getText())
+
+        if ctx.elem.type == seqParser.LAST:
+            a=self.Context['i']
+        elif ctx.elem.type == seqParser.ZERO:
+            a=0
+        else:
+            pass
+        self.Stack.append(a)
+
+
+
     def exitAddExpr(self, ctx:seqParser.AddExprContext):
         logger.debug("exitAddExpr %s",ctx.getText())
         b=self.Stack.pop()
@@ -54,6 +68,19 @@ class SemSeq(seqListener):
             self.Stack.append(a+b)
         else:
             self.Stack.append(a-b)
+
+    def exitAtoIdx(self, ctx:seqParser.AtoIdxContext):
+        logger.debug("exitAtoIdx %s",ctx.getText())
+
+        a=self.Stack.pop()
+        # If the index is out of bounds reverts to the last available index
+        try:
+            b=self.Context['elems'][b]
+        except IndexError:
+            logger.debug("IndexError %d",a)
+            b=self.Context['i']
+        self.Stack.append(b)
+
 
     def exitMulExpr(self, ctx:seqParser.AddExprContext):
         logger.debug("exitMulExpr %s",ctx.getText())
@@ -83,14 +110,12 @@ class SemSeq(seqListener):
     def exitStep(self, ctx:seqParser.StepContext):
         logger.debug("exitStep %s",ctx.getText())
 
-        dir=ctx.dire.text
-
-
-        # Offset
-        if ctx.offset() is None:
-            offset=1
+        # At this time base should be a number representing an index
+        # Base
+        if ctx.base() is None:
+            base=self.Context['i']
         else:
-            offset=self.Stack.pop()
+            base=self.Stack.pop()
 
         # Repeat
         if ctx.repet() is None:
@@ -98,31 +123,69 @@ class SemSeq(seqListener):
         else:
             repe=self.Stack.pop()
 
-        # Base
-        if ctx.base() is None:
-            base='L'
-        else:
-            base=ctx.base().getText()
 
-        for f in range(repe):
-            i=self.Context['i']
-            if base=='L':
-                basei=i
-            elif base=='Z':
-                basei=0
 
-            old=self.Context['elems'][basei]
-            new=copy.deepcopy(old)
-            new.Move(dir,offset)
+        logger.info("Rep:%d Base,%d",repe,base)
 
-            i=i+1
-            self.Context['i']=i
-            self.Context['elems'].append(new)
+
+
+        self.Dirs=[]
+
+
+        # dir=ctx.dire.text
+        #
+        #
+        # # Offset
+        # if ctx.offset() is None:
+        #     offset=1
+        # else:
+        #     offset=self.Stack.pop()
+        #
+        # # Repeat
+        # if ctx.repet() is None:
+        #     repe=1
+        # else:
+        #     repe=self.Stack.pop()
+        #
+        # # Base
+        # if ctx.base() is None:
+        #     base='L'
+        # else:
+        #     base=ctx.base().getText()
+        #
+        # for f in range(repe):
+        #     i=self.Context['i']
+        #     if base=='L':
+        #         basei=i
+        #     elif base=='Z':
+        #         basei=0
+        #
+        #     old=self.Context['elems'][basei]
+        #     new=copy.deepcopy(old)
+        #     new.Move(dir,offset)
+        #
+        #     i=i+1
+        #     self.Context['i']=i
+        #     self.Context['elems'].append(new)
 
         # self.Queue.append(ctx.dire.text)
         # self.Queue.append(repe)
         # self.Queue.append(base)
         # self.Queue.append(offset)
+
+
+    def exitDirs(self, ctx:seqParser.DirsContext):
+        logger.debug("exitDirs %s",ctx.getText())
+
+        dir=ctx.dire.text
+        if ctx.offset() is None:
+            offset=1
+        else:
+            offset=self.Stack.pop()
+
+        self.Dirs.append((dir,offset))
+
+
 
     def enterSequence(self, ctx:seqParser.SequenceContext):
         pass

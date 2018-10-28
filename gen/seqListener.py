@@ -35,6 +35,15 @@ class seqListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by seqParser#dirs.
+    def enterDirs(self, ctx:seqParser.DirsContext):
+        pass
+
+    # Exit a parse tree produced by seqParser#dirs.
+    def exitDirs(self, ctx:seqParser.DirsContext):
+        pass
+
+
     # Enter a parse tree produced by seqParser#repet.
     def enterRepet(self, ctx:seqParser.RepetContext):
         pass
@@ -104,6 +113,15 @@ class seqListener(ParseTreeListener):
 
     # Exit a parse tree produced by seqParser#powExpr.
     def exitPowExpr(self, ctx:seqParser.PowExprContext):
+        pass
+
+
+    # Enter a parse tree produced by seqParser#atoIdx.
+    def enterAtoIdx(self, ctx:seqParser.AtoIdxContext):
+        pass
+
+    # Exit a parse tree produced by seqParser#atoIdx.
+    def exitAtoIdx(self, ctx:seqParser.AtoIdxContext):
         pass
 
 
