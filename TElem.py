@@ -5,12 +5,10 @@ from TPos import *
 
 
 class TElem:
-    val=0
-    pos=TPos()
-
     def __init__(self,v,row,col):
         self.val=v
-        self.pos.Set(row,col)
+        self.pos=TPos(row,col)
+
 
     def Move(self,dir,steps):
         newpos=self.pos.Go(dir,steps)

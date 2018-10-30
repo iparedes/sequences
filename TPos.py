@@ -2,9 +2,6 @@ import logging
 logger = logging.getLogger(__name__)
 
 class TPos:
-    row=0
-    col=0
-
 
     def __init__(self,r=0,c=0):
         self.row=r
@@ -32,6 +29,12 @@ class TPos:
             pass
 
         return TPos(nr,nc)
+
+    #   Moves the pos s steps away in the specified direction
+    def Move(self,dir,s=1):
+        p=self.Go(dir,s)
+        self.row=p.row
+        self.col=p.col
 
     def getText(self):
         a="(r:"+str(self.row)+",c:"+str(self.col)+")"
