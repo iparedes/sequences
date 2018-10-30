@@ -17,7 +17,8 @@ class TSeq:
         #stream = antlr4.InputStream("(5*2)N[I:2]SE")
         #stream = antlr4.InputStream("(2*1)N[Z:2]")
         #stream = antlr4.InputStream("[Z]N:2W:1")
-        stream = antlr4.InputStream("3[L]N:2W:1")
+        #stream = antlr4.InputStream("3[L]N:2W:1")
+        stream = antlr4.InputStream("((T+1)/2)E;(T/2)N;((T+1)/2)W;(T/2)S;")
 
         self.Walker=None
         self.Tree=None
@@ -33,7 +34,9 @@ class TSeq:
         self.Walker=ParseTreeWalker()
 
         # i is the index of the last element in the sequence
-        self.Context['i']=0
+        self.Context['i']=0         # Current element
+        self.Context['layer']=1         # Layer
+        self.Context['step']=1
         self.Context['elems']=[]
 
         # Initial element
@@ -53,9 +56,4 @@ class TSeq:
         seq=SemSeq(self.Context)
         self.Walker.walk(seq,self.Tree)
 
-        for elem in self.Context['elems']:
-            a=elem.getText()
-            print(a)
-
-        #print(seq.Queue)
 

@@ -4,16 +4,11 @@ grammar seq;
 
 
 sequence
-    :   layer+
-    ;
-
-layer
-    :   step+
+    :   (step SEMI)+
     ;
 
 step
     :   repet? (OBRA base CBRA)? dirs+
-//    :   repet? dire=(N | S | W | E | WE | EW | NS | SN) (OBRA (base COLON)? offset CBRA)?
     ;
 
 dirs
@@ -36,13 +31,15 @@ expr
 atom
     :   OPAR expr CPAR      #parExpr
     |   NUMBER              #numberAtom
-    |   elem=(LAST | ZERO)  #elemAtom
+    |   elem=(LAST | ZERO | STEP)  #elemAtom
     ;
 
 
 
-LAST    : 'L';   // index of last element added to the sequence (i-1)
-ZERO    : 'Z';   // index of initial element of the sequence
+LAST    : 'I';  // index of last element added to the sequence
+ZERO    : 'Z';  // index of initial element of the sequence
+LAYER   : 'L';  // index of the current layer
+STEP    : 'T';  // index of the current step
 
 
 
@@ -75,6 +72,7 @@ PLUS:   '+';
 MINUS:  '-';
 POW:    '^';
 COLON:  ':';
+SEMI:   ';';
 
 N:      'N';
 S:      'S';

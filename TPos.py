@@ -13,17 +13,19 @@ class TPos:
 
     #   returns a new position that is s steps away in the specified direction
     def Go(self,dir,s=1):
+        logger.info("Going %s:%d",dir,s)
+
         nr=self.row
         nc=self.col
 
         if dir=='N':
             nr=nr+s
         elif dir=='S':
-            nr=nr-1
+            nr=nr-s
         elif dir=='W':
-            nc=nc-1
+            nc=nc-s
         elif dir=='E':
-            nc=nc+1
+            nc=nc+s
         else:
             logger.debug("TPos::go Unknown dir %s",dir)
             pass

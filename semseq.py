@@ -63,6 +63,12 @@ class SemSeq(seqListener):
         elif ctx.elem.type == seqParser.ZERO:
             a=0
             b="zero"
+        elif ctx.elem.type == seqParser.LAYER:
+            a=self.Context['layer']
+            b="layer"
+        elif ctx.elem.type == seqParser.STEP:
+            a=self.Context['step']
+            b='step'
         else:
             pass
         #self.Stack.append(a)
@@ -142,6 +148,7 @@ class SemSeq(seqListener):
         # Base
         if ctx.base() is None:
             base=self.Context['i']
+            typebase='i'
         else:
             #base=self.Stack.pop()
             (base, typebase) = self.pop()
@@ -149,6 +156,7 @@ class SemSeq(seqListener):
         # Repeat
         if ctx.repet() is None:
             repe=1
+            typerepe='number'
         else:
             #repe=self.Stack.pop()
             (repe, typerepe) = self.pop()
@@ -162,12 +170,16 @@ class SemSeq(seqListener):
             pos=new_elem.pos
             for p in self.Dirs:
                 pos.Move(p[0],p[1])
+
             self.Context['elems'].append(new_elem)
             self.Context['i']=i+1
+
             if typebase=='i':
-                base=i+1
+                base=self.Context['i']
 
         self.Dirs=[]
+        a=self.Context['step']
+        self.Context['step']=a+1
 
 
         # dir=ctx.dire.text
@@ -211,6 +223,11 @@ class SemSeq(seqListener):
         # self.Queue.append(base)
         # self.Queue.append(offset)
 
+    # def exitLayer(self, ctx:seqParser.LayerContext):
+    #     logger.debug("exitLayer %s",ctx.getText())
+    #
+    #     l=self.Context['layer']
+    #     self.Context['layer']=l+1
 
     def exitDirs(self, ctx:seqParser.DirsContext):
         logger.debug("exitDirs %s",ctx.getText())
