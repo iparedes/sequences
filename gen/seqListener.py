@@ -17,6 +17,15 @@ class seqListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by seqParser#gen.
+    def enterGen(self, ctx:seqParser.GenContext):
+        pass
+
+    # Exit a parse tree produced by seqParser#gen.
+    def exitGen(self, ctx:seqParser.GenContext):
+        pass
+
+
     # Enter a parse tree produced by seqParser#step.
     def enterStep(self, ctx:seqParser.StepContext):
         pass

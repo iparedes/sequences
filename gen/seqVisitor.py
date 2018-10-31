@@ -14,6 +14,11 @@ class seqVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
+    # Visit a parse tree produced by seqParser#gen.
+    def visitGen(self, ctx:seqParser.GenContext):
+        return self.visitChildren(ctx)
+
+
     # Visit a parse tree produced by seqParser#step.
     def visitStep(self, ctx:seqParser.StepContext):
         return self.visitChildren(ctx)

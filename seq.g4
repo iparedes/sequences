@@ -4,8 +4,10 @@ grammar seq;
 
 
 sequence
-    :   (step SEMI)+
+    :   OCUR gen CCUR (step SEMI)+
     ;
+
+gen :   expr;
 
 step
     :   repet? (OBRA base CBRA)? dirs+
@@ -66,6 +68,8 @@ OPAR:   '(';
 CPAR:   ')';
 OBRA:   '[';
 CBRA:   ']';
+OCUR:   '{';
+CCUR:   '}';
 MULT:   '*';
 DIV:    '/';
 PLUS:   '+';

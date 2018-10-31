@@ -18,7 +18,8 @@ class TSeq:
         #stream = antlr4.InputStream("(2*1)N[Z:2]")
         #stream = antlr4.InputStream("[Z]N:2W:1")
         #stream = antlr4.InputStream("3[L]N:2W:1")
-        stream = antlr4.InputStream("((T+1)/2)E;(T/2)N;((T+1)/2)W;(T/2)S;")
+        #stream = antlr4.InputStream("((T+1)/2)E;(T/2)N;((T+1)/2)W;(T/2)S;")
+        stream = antlr4.InputStream("{Z+1} (I+1)N;")
 
         self.Walker=None
         self.Tree=None
