@@ -27,7 +27,7 @@ from TElem import *
 
 class SemSeq(seqListener):
 
-    self.vars=['i','zero','layer','step']
+    vars=['i','zero','layer','step']
 
     # Queue is a set of registers
     # Each register is Movement, Repeat, Base, Offset
@@ -112,39 +112,45 @@ class SemSeq(seqListener):
     def exitStep(self, ctx:seqParser.StepContext):
         logger.debug("exitStep %s",ctx.getText())
 
-        repet=self.evaluate(self.Repet)
+        if not self.Repet:
+            repe=1
+        else:
+            repe=self.evaluate(self.Repet)
 
-        # for t in range(0,repe):
-        #     i=self.Context['i']
-        #     base_elem=self.Context['elems'][base]
-        #     new_elem=copy.deepcopy(base_elem)
-        #     pos=new_elem.pos
-        #     for p in self.Dirs:
-        #         pos.Move(p[0],p[1])
-        #
-        #     self.Context['elems'].append(new_elem)
-        #     self.Context['i']=i+1
-        #
-        #     if typebase=='i':
-        #         base=self.Context['i']
-        #
-        # self.Dirs=[]
-        # a=self.Context['step']
-        # self.Context['step']=a+1
+
+
+
+        for t in range(0,repe):
+            i=self.Context['i']
+            if not self.Base:
+                # Take the last element by default
+                base=self.Context['i']
+            else:
+                base=self.evaluate(self.Base)
+            base_elem=self.Context['elems'][base]
+            new_elem=copy.deepcopy(base_elem)
+            pos=new_elem.pos
+            for p in self.Dirs:
+                pos.Move(p[0],p[1])
+
+            self.Context['elems'].append(new_elem)
+            self.Context['i']=i+1
+
+        self.Dirs=[]
+        a=self.Context['step']
+        self.Context['step']=a+1
 
 
 
     def exitDirs(self, ctx:seqParser.DirsContext):
         logger.debug("exitDirs %s",ctx.getText())
 
-        # dir=ctx.dire.text
-        # if ctx.offset() is None:
-        #     offset=1
-        # else:
-        #     #offset=self.Stack.pop()
-        #     (offset,type) = self.pop()
-        #
-        # self.Dirs.append((dir,offset))
+        dir=ctx.dire.text
+        if not self.Offset:
+            offset=1
+        else:
+            offset=self.evaluate(self.Offset)
+        self.Dirs.append((dir,offset))
 
 
     def exitGen(self, ctx:seqParser.GenContext):
@@ -179,7 +185,7 @@ class SemSeq(seqListener):
         logger.debug("evaluate")
 
         aux=[]
-
+        item=0
         t=copy.copy(pila)
         t.reverse()
         while t:
@@ -191,9 +197,33 @@ class SemSeq(seqListener):
                 aux.append(item)
             else:
                 # operator
-
-
-        return item
+                if item == '+':
+                    a=aux.pop()
+                    b=aux.pop()
+                    aux.append(a+b)
+                elif item == '-':
+                    a=aux.pop()
+                    b=aux.pop()
+                    aux.append(a-b)
+                elif item == '*':
+                    a=aux.pop()
+                    b=aux.pop()
+                    aux.append(a*b)
+                elif item == '/':
+                    a=aux.pop()
+                    b=aux.pop()
+                    aux.append(int(b/a))
+                elif item == '':
+                    a=aux.pop()
+                    b=aux.pop()
+                    aux.append(b**a)
+                elif item == 'neg':
+                    a=aux.pop()
+                    aux.append(-a)
+                else:
+                    pass
+        a=aux.pop()
+        return a
 
     def isValue(self,item):
         return type(item)==int

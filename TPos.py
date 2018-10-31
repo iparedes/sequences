@@ -35,6 +35,7 @@ class TPos:
     #   Moves the pos s steps away in the specified direction
     def Move(self,dir,s=1):
         p=self.Go(dir,s)
+        logger.debug("Moved from (r:%d,c:%d) to (r:%d,c:%d)",self.row,self.col,p.row,p.col)
         self.row=p.row
         self.col=p.col
 

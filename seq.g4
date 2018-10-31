@@ -4,7 +4,8 @@ grammar seq;
 
 
 sequence
-    :   OCUR gen CCUR (step SEMI)+
+//    :   OCUR gen CCUR (step SEMI)+
+    :   (step SEMI)+
     ;
 
 gen :   expr;
