@@ -18,7 +18,8 @@ class TSeq:
         #stream = antlr4.InputStream("(2*1)N[Z:2]")
         #stream = antlr4.InputStream("[Z]N:2W:1")
         #stream = antlr4.InputStream("3[L]N:2W:1")
-        stream = antlr4.InputStream("((T+1)/2)E;(T/2)N;((T+1)/2)W;(T/2)S;")
+        #stream = antlr4.InputStream("{I+1}((T+1)/2)E;(T/2)N;((T+1)/2)W;(T/2)S;")
+        stream = antlr4.InputStream("{j+1} [#(l-1)+1]S,lEW;")
         #stream = antlr4.InputStream("4N;")
 
         self.Walker=None
@@ -35,21 +36,19 @@ class TSeq:
         self.Walker=ParseTreeWalker()
 
         # i is the index of the last element in the sequence
-        self.Context['i']=0         # Current element
+        self.Context['i']=1         # Current element
         self.Context['layer']=1         # Layer
         self.Context['step']=1
+        self.Context['istep']=0
         self.Context['elems']=[]
 
-        # Initial element
+
+        # Initial element to avoid 0 (as we are starting i at 1)
+        # WATCH IT OUT! Eventually we may want to select if i starts at 0 or 1
+        new=TElem(None,0,0)
+        self.Context['elems'].append(new)
         new=TElem(1,0,0)
         self.Context['elems'].append(new)
-
-    def NextVal(self):
-        a=self.Context['elems'][self.Context['i']]
-
-        #This is where the generating function should be created
-        a=a+1
-        return a
 
 
     def Walk(self):

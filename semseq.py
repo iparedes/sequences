@@ -27,7 +27,7 @@ from TElem import *
 
 class SemSeq(seqListener):
 
-    vars=['i','zero','layer','step']
+    vars=['i','zero','layer','step','ilayer']
 
     # Queue is a set of registers
     # Each register is Movement, Repeat, Base, Offset
@@ -41,11 +41,11 @@ class SemSeq(seqListener):
         self.Repet=[]
         self.Offset=[]
         self.Base=[]
+        self.Gen=[]
 
         self.Queue=[]
         self.Dirs=[]
         self.Context=context
-        self.SExpr=[]
 
     def push(self,val):
         self.Stack.append(val)
@@ -70,10 +70,25 @@ class SemSeq(seqListener):
             b="layer"
         elif ctx.elem.type == seqParser.STEP:
             b='step'
+        elif ctx.elem.type == seqParser.ILAYER:
+            b='ilayer'
         else:
             pass
         self.push(b)
 
+
+    def enterLayer(self, ctx:seqParser.LayerContext):
+        logger.debug("enterLayer %s",ctx.getText())
+
+        logger.critical("Starting layer %d",self.Context['layer'])
+        self.Context['ilayer']=0
+        self.Context['step']=0
+
+    def exitLayer(self, ctx:seqParser.LayerContext):
+        logger.debug("enterLayer %s",ctx.getText())
+
+        a=self.Context['layer']
+        self.Context['layer']=a+1
 
 
     def exitAddExpr(self, ctx:seqParser.AddExprContext):
@@ -108,6 +123,17 @@ class SemSeq(seqListener):
 
         self.push("neg")
 
+    def exitSumExpr(self, ctx:seqParser.SumExprContext):
+        logger.debug("exitSumExpr %s",ctx.getText())
+
+        self.push("sum")
+
+    def enterStep(self, ctx:seqParser.StepContext):
+        logger.debug("enterStep %s",ctx.getText())
+
+        self.Base=[]
+        self.Dirs=[]
+        self.Repet=[]
 
     def exitStep(self, ctx:seqParser.StepContext):
         logger.debug("exitStep %s",ctx.getText())
@@ -118,29 +144,53 @@ class SemSeq(seqListener):
             repe=self.evaluate(self.Repet)
 
 
-
-
         for t in range(0,repe):
             i=self.Context['i']
+            j=self.Context['ilayer']
             if not self.Base:
                 # Take the last element by default
                 base=self.Context['i']
             else:
                 base=self.evaluate(self.Base)
+            logger.critical("Taking elem %d as base",base)
             base_elem=self.Context['elems'][base]
             new_elem=copy.deepcopy(base_elem)
             pos=new_elem.pos
+            logger.critical("its pos is %s and its val is %d",pos.getText(),new_elem.val)
+            val=self.evaluate(self.Gen)
+            logger.critical("The value of the new elem is %d",val)
+            new_elem.val=val
             for p in self.Dirs:
-                pos.Move(p[0],p[1])
+                logger.critical("Now I am moving to %s",p)
+                if len(p[0])==2:
+                    pos.Move(p[0][0],p[1])
+                    logger.critical("which results in a new pos of %s",pos.getText())
+                    self.Context['elems'].append(new_elem)
+                    new_elem=copy.deepcopy(base_elem)
+                    new_elem.val=val
+                    pos=new_elem.pos
+                    pos.Move(p[0][1],p[1])
+                    logger.critical("and an additional element at %s",pos.getText())
+                    self.Context['elems'].append(new_elem)
+                else:
+                    pos.Move(p[0],p[1])
+                    logger.critical("which results in a new pos of %s",pos.getText())
+                    self.Context['elems'].append(new_elem)
 
-            self.Context['elems'].append(new_elem)
             self.Context['i']=i+1
+            self.Context['ilayer']=j+1
+
+
 
         self.Dirs=[]
         a=self.Context['step']
         self.Context['step']=a+1
 
 
+    def enterDirs(self, ctx:seqParser.DirsContext):
+        logger.debug("enterDirs %s",ctx.getText())
+
+        self.Offset=[]
 
     def exitDirs(self, ctx:seqParser.DirsContext):
         logger.debug("exitDirs %s",ctx.getText())
@@ -153,10 +203,12 @@ class SemSeq(seqListener):
         self.Dirs.append((dir,offset))
 
 
+
+
     def exitGen(self, ctx:seqParser.GenContext):
         logger.debug("exitGen %s",ctx.getText())
 
-        self.SExpr=self.Stack
+        self.Gen=self.Stack
         self.Stack=[]
 
 
@@ -165,6 +217,8 @@ class SemSeq(seqListener):
 
         self.Repet=self.Stack
         self.Stack=[]
+
+
 
     def exitOffset(self, ctx:seqParser.OffsetContext):
         logger.debug("exitOffset %s",ctx.getText())
@@ -179,6 +233,9 @@ class SemSeq(seqListener):
         self.Stack=[]
 
     def enterSequence(self, ctx:seqParser.SequenceContext):
+        logger.debug("enterSequence %s",ctx.getText())
+
+        self.Gen=[]
         pass
 
     def evaluate(self,pila):
@@ -204,7 +261,7 @@ class SemSeq(seqListener):
                 elif item == '-':
                     a=aux.pop()
                     b=aux.pop()
-                    aux.append(a-b)
+                    aux.append(b-a)
                 elif item == '*':
                     a=aux.pop()
                     b=aux.pop()
@@ -213,13 +270,24 @@ class SemSeq(seqListener):
                     a=aux.pop()
                     b=aux.pop()
                     aux.append(int(b/a))
-                elif item == '':
+                elif item == '^':
                     a=aux.pop()
                     b=aux.pop()
                     aux.append(b**a)
                 elif item == 'neg':
                     a=aux.pop()
                     aux.append(-a)
+                elif item == 'sum':
+                    a=aux.pop()
+                    b=sum(range(1,a+1))
+                    aux.append(b)
+                elif item == '&':
+                    a=aux.pop()
+                    try:
+                        n=self.Context['elems'][a]
+                    except IndexError:
+                        n=self.Context['elems'][self.Context['i']]
+                    aux.append(n)
                 else:
                     pass
         a=aux.pop()

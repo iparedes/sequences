@@ -4,11 +4,14 @@ grammar seq;
 
 
 sequence
-//    :   OCUR gen CCUR (step SEMI)+
-    :   (step SEMI)+
+    :   OCUR gen CCUR (layer SEMI)+
     ;
 
 gen :   expr;
+
+layer
+    :   step (COMMA step)*
+    ;
 
 step
     :   repet? (OBRA base CBRA)? dirs+
@@ -25,6 +28,7 @@ base    :   expr;
 expr
     :   <assoc=right> expr POW expr     #powExpr
     |   MINUS expr                      #minExpr
+    |   SUM expr                        #sumExpr
     |   expr op=(MULT | DIV ) expr      #mulExpr
     |   expr op=(PLUS | MINUS) expr     #addExpr
     |   atom                            #atoExpr
@@ -34,15 +38,16 @@ expr
 atom
     :   OPAR expr CPAR      #parExpr
     |   NUMBER              #numberAtom
-    |   elem=(LAST | ZERO | STEP)  #elemAtom
+    |   elem=(LAST | ZERO | STEP | LAYER | ILAYER)  #elemAtom
     ;
 
 
 
-LAST    : 'I';  // index of last element added to the sequence
-ZERO    : 'Z';  // index of initial element of the sequence
-LAYER   : 'L';  // index of the current layer
-STEP    : 'T';  // index of the current step
+LAST    : 'i';  // index of last element added to the sequence
+ZERO    : 'z';  // index of initial element of the sequence
+STEP    : 't';  // index of the current step inside the layer
+LAYER   : 'l';  // index of the current layer
+ILAYER  : 'j';  // index of the last element in the layer
 
 
 
@@ -76,8 +81,10 @@ DIV:    '/';
 PLUS:   '+';
 MINUS:  '-';
 POW:    '^';
+SUM:    '#';  // #4 = 4+3+2+1
 COLON:  ':';
 SEMI:   ';';
+COMMA:  ',';
 
 N:      'N';
 S:      'S';

@@ -13,7 +13,7 @@ class TPos:
 
     #   returns a new position that is s steps away in the specified direction
     def Go(self,dir,s=1):
-        logger.info("Going %s:%d",dir,s)
+        logger.debug("Going %s:%d",dir,s)
 
         nr=self.row
         nc=self.col
