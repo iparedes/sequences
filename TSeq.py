@@ -19,8 +19,8 @@ class TSeq:
         #stream = antlr4.InputStream("[Z]N:2W:1")
         #stream = antlr4.InputStream("3[L]N:2W:1")
         #stream = antlr4.InputStream("{I+1}((T+1)/2)E;(T/2)N;((T+1)/2)W;(T/2)S;")
-        stream = antlr4.InputStream("{j+1} [#(l-1)+1]S,lEW;")
-        #stream = antlr4.InputStream("4N;")
+        stream = antlr4.InputStream("{j/2+1} [((l-1)^2)+1]S,(l)[(l^2)+1]EW:(j/2);")
+        #stream = antlr4.InputStream("{j} N,E;")
 
         self.Walker=None
         self.Tree=None
@@ -37,9 +37,9 @@ class TSeq:
 
         # i is the index of the last element in the sequence
         self.Context['i']=1         # Current element
-        self.Context['layer']=1         # Layer
-        self.Context['step']=1
-        self.Context['istep']=0
+        self.Context['layer']=0         # Layer
+        self.Context['step']=0
+        self.Context['ilayer']=0
         self.Context['elems']=[]
 
 

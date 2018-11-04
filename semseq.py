@@ -79,16 +79,15 @@ class SemSeq(seqListener):
 
     def enterLayer(self, ctx:seqParser.LayerContext):
         logger.debug("enterLayer %s",ctx.getText())
-
+        i=self.Context['layer']
+        self.Context['layer']=i+1
         logger.critical("Starting layer %d",self.Context['layer'])
         self.Context['ilayer']=0
         self.Context['step']=0
 
     def exitLayer(self, ctx:seqParser.LayerContext):
         logger.debug("enterLayer %s",ctx.getText())
-
-        a=self.Context['layer']
-        self.Context['layer']=a+1
+        pass
 
 
     def exitAddExpr(self, ctx:seqParser.AddExprContext):
@@ -131,6 +130,8 @@ class SemSeq(seqListener):
     def enterStep(self, ctx:seqParser.StepContext):
         logger.debug("enterStep %s",ctx.getText())
 
+        i=self.Context['step']
+        self.Context['step']=i+1
         self.Base=[]
         self.Dirs=[]
         self.Repet=[]
@@ -145,46 +146,54 @@ class SemSeq(seqListener):
 
 
         for t in range(0,repe):
-            i=self.Context['i']
-            j=self.Context['ilayer']
+
+
             if not self.Base:
                 # Take the last element by default
                 base=self.Context['i']
             else:
                 base=self.evaluate(self.Base)
+
+            i=self.Context['i']
+            self.Context['i']=i+1
+            j=self.Context['ilayer']
+            self.Context['ilayer']=j+1
+
             logger.critical("Taking elem %d as base",base)
             base_elem=self.Context['elems'][base]
             new_elem=copy.deepcopy(base_elem)
             pos=new_elem.pos
             logger.critical("its pos is %s and its val is %d",pos.getText(),new_elem.val)
             val=self.evaluate(self.Gen)
-            logger.critical("The value of the new elem is %d",val)
+            logger.critical("The value of the new elem (%d) is %d",self.Context['i'],val)
             new_elem.val=val
             for p in self.Dirs:
                 logger.critical("Now I am moving to %s",p)
+                offset=self.evaluate(p[1])
                 if len(p[0])==2:
-                    pos.Move(p[0][0],p[1])
+                    pos.Move(p[0][0],offset)
                     logger.critical("which results in a new pos of %s",pos.getText())
                     self.Context['elems'].append(new_elem)
                     new_elem=copy.deepcopy(base_elem)
                     new_elem.val=val
                     pos=new_elem.pos
-                    pos.Move(p[0][1],p[1])
-                    logger.critical("and an additional element at %s",pos.getText())
+                    offset=self.evaluate(p[1])
+                    pos.Move(p[0][1],offset)
+
+                    i=self.Context['i']
+                    self.Context['i']=i+1
+                    j=self.Context['ilayer']
+                    self.Context['ilayer']=j+1
+
+                    logger.critical("and an additional element (%d) at %s",self.Context['i'],pos.getText())
                     self.Context['elems'].append(new_elem)
                 else:
-                    pos.Move(p[0],p[1])
+                    pos.Move(p[0],offset)
                     logger.critical("which results in a new pos of %s",pos.getText())
                     self.Context['elems'].append(new_elem)
 
-            self.Context['i']=i+1
-            self.Context['ilayer']=j+1
-
-
 
         self.Dirs=[]
-        a=self.Context['step']
-        self.Context['step']=a+1
 
 
     def enterDirs(self, ctx:seqParser.DirsContext):
@@ -197,10 +206,10 @@ class SemSeq(seqListener):
 
         dir=ctx.dire.text
         if not self.Offset:
-            offset=1
-        else:
-            offset=self.evaluate(self.Offset)
-        self.Dirs.append((dir,offset))
+            self.Offset=[1]
+#        else:
+#            offset=self.evaluate(self.Offset)
+        self.Dirs.append((dir,self.Offset))
 
 
 
