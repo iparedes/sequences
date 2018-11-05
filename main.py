@@ -5,7 +5,7 @@ from TTable import *
 def main():
     S=TSeq()
 
-    while S.Context['i']<10:
+    while S.Context['i']<50:
         S.Walk()
 
 
@@ -13,7 +13,8 @@ def main():
         print(e.getText())
 
     t=TTable(S.Context['elems'])
-    t.plot()
+    #t.plot()
+    t.grid()
     pass
 
 

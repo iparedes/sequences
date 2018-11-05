@@ -18,8 +18,10 @@ class TSeq:
         #stream = antlr4.InputStream("(2*1)N[Z:2]")
         #stream = antlr4.InputStream("[Z]N:2W:1")
         #stream = antlr4.InputStream("3[L]N:2W:1")
-        #stream = antlr4.InputStream("{I+1}((T+1)/2)E;(T/2)N;((T+1)/2)W;(T/2)S;")
-        stream = antlr4.InputStream("{j/2+1} [((l-1)^2)+1]S,(l)[(l^2)+1]EW:(j/2);")
+        # The cube
+        stream = antlr4.InputStream("{i}((l+1)/2)E;(l/2)N;((l+1)/2)W;(l/2)S;")
+        # The pyramid
+        #stream = antlr4.InputStream("{j/2+1} [((l-1)^2)+1]S,(l)[(l^2)+1]EW:(j/2);")
         #stream = antlr4.InputStream("{j} N,E;")
 
         self.Walker=None
