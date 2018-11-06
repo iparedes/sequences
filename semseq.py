@@ -81,7 +81,7 @@ class SemSeq(seqListener):
         logger.debug("enterLayer %s",ctx.getText())
         i=self.Context['layer']
         self.Context['layer']=i+1
-        logger.critical("Starting layer %d",self.Context['layer'])
+        logger.debug("Starting layer %d",self.Context['layer'])
         self.Context['ilayer']=0
         self.Context['step']=0
 
@@ -159,20 +159,20 @@ class SemSeq(seqListener):
             j=self.Context['ilayer']
             self.Context['ilayer']=j+1
 
-            logger.critical("Taking elem %d as base",base)
+            logger.debug("Taking elem %d as base",base)
             base_elem=self.Context['elems'][base]
             new_elem=copy.deepcopy(base_elem)
             pos=new_elem.pos
-            logger.critical("its pos is %s and its val is %d",pos.getText(),new_elem.val)
+            logger.debug("its pos is %s and its val is %d",pos.getText(),new_elem.val)
             val=self.evaluate(self.Gen)
-            logger.critical("The value of the new elem (%d) is %d",self.Context['i'],val)
+            logger.debug("The value of the new elem (%d) is %d",self.Context['i'],val)
             new_elem.val=val
             for p in self.Dirs:
-                logger.critical("Now I am moving to %s",p)
+                logger.debug("Now I am moving to %s",p)
                 offset=self.evaluate(p[1])
                 if len(p[0])==2:
                     pos.Move(p[0][0],offset)
-                    logger.critical("which results in a new pos of %s",pos.getText())
+                    logger.debug("which results in a new pos of %s",pos.getText())
                     self.Context['elems'].append(new_elem)
                     new_elem=copy.deepcopy(base_elem)
                     new_elem.val=val
@@ -185,11 +185,11 @@ class SemSeq(seqListener):
                     j=self.Context['ilayer']
                     self.Context['ilayer']=j+1
 
-                    logger.critical("and an additional element (%d) at %s",self.Context['i'],pos.getText())
+                    logger.debug("and an additional element (%d) at %s",self.Context['i'],pos.getText())
                     self.Context['elems'].append(new_elem)
                 else:
                     pos.Move(p[0],offset)
-                    logger.critical("which results in a new pos of %s",pos.getText())
+                    logger.debug("which results in a new pos of %s",pos.getText())
                     self.Context['elems'].append(new_elem)
 
 

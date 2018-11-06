@@ -5,7 +5,7 @@ from TTable import *
 def main():
     S=TSeq()
 
-    while S.Context['i']<50:
+    while S.Context['i']<20000:
         S.Walk()
 
 
@@ -20,7 +20,7 @@ def main():
 
 if __name__ == '__main__':
     #logging.basicConfig(level=logging.DEBUG)
-    logging.basicConfig(level=logging.CRITICAL)
+    logging.basicConfig(level=logging.INFO)
     logger=logging.getLogger(__name__)
     main()
 

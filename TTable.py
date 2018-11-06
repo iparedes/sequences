@@ -1,7 +1,10 @@
 import logging
 logger = logging.getLogger(__name__)
+import math
 
 from matplotlib import rcParams
+import matplotlib.patches as patches
+
 import matplotlib.pyplot as plt
 import numpy as np
 
@@ -70,7 +73,8 @@ class TTable:
     def grid(self):
         rcParams['font.family']='serif'
         rcParams['font.size']=10
-        plt.figure(figsize=(8,8))
+        self.figura=plt.figure(1,figsize=(8,8))
+        self.axis=self.figura.add_subplot(111)
 
         rows = self.rows
         cols = self.cols
@@ -82,7 +86,6 @@ class TTable:
         for e in self.Elems:
             self.write(e)
 
-
         a=np.linspace(0,cols,cols,[])
         plt.xticks(a," ")
         plt.yticks(np.linspace(0,rows,rows,[])," ")
@@ -93,7 +96,7 @@ class TTable:
     def write(self,rcv):
         row=rcv[0]
         col=rcv[1]
-        val=rcv[2]
+        v=rcv[2]
 
         x=(col+1)/2
         y=(row+1)/2
@@ -101,8 +104,13 @@ class TTable:
         x=col+0.5
         y=row+0.5
 
-        plt.text(x,y,val,horizontalalignment='center',verticalalignment='center')
+        #plt.text(x,y,v,horizontalalignment='center',verticalalignment='center')
 
+        if self.isPrime(v):
+            rect = patches.Rectangle((col,row),1,1,linewidth=1,edgecolor='r',facecolor='red')
+            self.axis.add_patch(rect)
 
-    def isPrime(n):
-        return n > 1 and all(n%i for i in islice(count(2), int(sqrt(n)-1)))
+    def isPrime(self,n):
+        if n % 2 == 0 and n > 2:
+            return False
+        return all(n % i for i in range(3, int(math.sqrt(n)) + 1, 2))

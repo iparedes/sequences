@@ -19,9 +19,9 @@ class TPos:
         nc=self.col
 
         if dir=='N':
-            nr=nr+s
-        elif dir=='S':
             nr=nr-s
+        elif dir=='S':
+            nr=nr+s
         elif dir=='W':
             nc=nc-s
         elif dir=='E':
