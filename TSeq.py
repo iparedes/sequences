@@ -10,25 +10,10 @@ from TElem import *
 
 class TSeq:
 
-
-
-
-    def __init__(self):
-        #stream = antlr4.InputStream("(5*2)N[I:2]SE")
-        #stream = antlr4.InputStream("(2*1)N[Z:2]")
-        #stream = antlr4.InputStream("[Z]N:2W:1")
-        #stream = antlr4.InputStream("3[L]N:2W:1")
-        # The cube
-        #stream = antlr4.InputStream("{i}((l+1)/2)E;(l/2)N;((l+1)/2)W;(l/2)S;")
-        # The pyramid
-        stream = antlr4.InputStream("{j/2+1} [((l-1)^2)+1]S,(l)[(l^2)+1]EW:(j/2);")
-        #stream = antlr4.InputStream("{j} N,E;")
-
+    def __init__(self,stream):
         self.Walker=None
         self.Tree=None
         self.Context={}
-
-        #lexer = seqLexer(antlr4.StdinStream())
 
         lexer = seqLexer(stream)
         tokens = antlr4.CommonTokenStream(lexer)
@@ -54,7 +39,6 @@ class TSeq:
 
 
     def Walk(self):
-
         seq=SemSeq(self.Context)
         self.Walker.walk(seq,self.Tree)
 
