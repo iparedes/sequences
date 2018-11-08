@@ -27,6 +27,8 @@ class TSeq:
         self.Context['layer']=0         # Layer
         self.Context['step']=0
         self.Context['ilayer']=0
+        self.Context['zerol']=1
+        self.Context['zerolprov']=1
         self.Context['elems']=[]
 
 

@@ -38,7 +38,7 @@ expr
 atom
     :   OPAR expr CPAR      #parExpr
     |   NUMBER              #numberAtom
-    |   elem=(LAST | ZERO | STEP | LAYER | ILAYER)  #elemAtom
+    |   elem=(LAST | ZERO | STEP | LAYER | ILAYER | ZEROL)  #elemAtom
     ;
 
 
@@ -48,7 +48,7 @@ ZERO    : 'z';  // index of initial element of the sequence
 STEP    : 't';  // index of the current step inside the layer
 LAYER   : 'l';  // index of the current layer
 ILAYER  : 'j';  // index of the last element in the layer
-
+ZEROL   : 'c';  // index of the first element of the previous layer
 
 
 //IDENT

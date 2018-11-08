@@ -27,7 +27,7 @@ from TElem import *
 
 class SemSeq(seqListener):
 
-    vars=['i','zero','layer','step','ilayer']
+    vars=['i','zero','layer','step','ilayer','zerol']
 
     # Queue is a set of registers
     # Each register is Movement, Repeat, Base, Offset
@@ -72,6 +72,8 @@ class SemSeq(seqListener):
             b='step'
         elif ctx.elem.type == seqParser.ILAYER:
             b='ilayer'
+        elif ctx.elem.type == seqParser.ZEROL:
+            b='zerol'
         else:
             pass
         self.push(b)
@@ -84,9 +86,11 @@ class SemSeq(seqListener):
         logger.debug("Starting layer %d",self.Context['layer'])
         self.Context['ilayer']=0
         self.Context['step']=0
+        self.Context['zerolprov']=self.Context['i']+1
 
     def exitLayer(self, ctx:seqParser.LayerContext):
         logger.debug("enterLayer %s",ctx.getText())
+        self.Context['zerol']=self.Context['zerolprov']
         pass
 
 

@@ -11,12 +11,14 @@ def main():
     # The cube
     #stream = antlr4.InputStream("{i}((l+1)/2)E;(l/2)N;((l+1)/2)W;(l/2)S;")
     # The pyramid
-    stream = antlr4.InputStream("{j/2+1} [((l-1)^2)+1]S,(l)[(l^2)+1]EW:(j/2);")
+    #stream = antlr4.InputStream("{j/2+1} [((l-1)^2)+1]S,(l)[(l^2)+1]EW:(j/2);")
     #stream = antlr4.InputStream("{j} N,E;")
+    stream = antlr4.InputStream("{j} [c]N,lE,(2*l)S,(2*l)W,(2*l)N,(l-1)E;")
+    #stream = antlr4.InputStream("{j} [c]N,E;")
 
     S=TSeq(stream)
 
-    while S.Context['i']<20000:
+    while S.Context['i']<40000:
         S.Walk()
 
 
